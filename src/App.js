@@ -8,6 +8,7 @@ import CardDetails from './components/cardDetails';
 import {AppBody, CardContainer} from './App.styles';
 
 function App() {
+
   const [dataSets, setDataSets] = useState([]);
 
   useEffect(() => {
@@ -23,11 +24,23 @@ function App() {
     setDataSets(data);
   }, []);
 
+  const handleCardSelection = (id) => {
+    setDataSets(dataSets.map((data)=>{
+      if(data.id ===id) {
+        return {
+          ...data,
+          clicked: !data.clicked
+        };
+      }
+      return data;
+    }))
+  }
+  
   return (
     <AppBody>
-      <CardContainer>
+      <CardContainer >
       {dataSets.map((el)=>{
-        return <CardDetails singleData={el} key={el.id}/>
+        return <CardDetails singleData={el} key={el.id} cardSelection={handleCardSelection}/>
       })}
       </CardContainer>
     </AppBody>
