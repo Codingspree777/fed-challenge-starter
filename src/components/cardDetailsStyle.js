@@ -10,10 +10,13 @@ export const Cards = styled.div`
   margin: 10px;
   border: 1px solid grey;
   border-radius: 10px;
+  box-shadow: ${props => (props.selected ? '3px 3px 5px 6px #ccc' : null)};
 
-  @media (prefers-reduced-motion: no-preference) {
-    transform: scale(0.6);
-    animation: ${scaleUp} 0.65s ease-in-out forwards;
+  transform: scale(0.6);
+  animation: ${scaleUp} 0.65s ease-in-out forwards;
+
+  @media all and (max-width: 500px) {
+    width: 98%;
   }
 `;
 
@@ -44,19 +47,20 @@ export const Tag = styled.div`
   padding: 10px;
 `;
 
-export const CardInfo = styled.div``
+export const CardInfo = styled.div``;
 
 export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  padding: 15px 15px 5px 15px;
   height: 50px;
+  overflow: hidden;
 `;
 
 export const Title = styled.div`
   height: 50px;
-  font-weight: bold
-`
+  font-weight: bold;
+`;
 
 export const ThumbNail = styled.img`
   width: 30px;
@@ -64,14 +68,21 @@ export const ThumbNail = styled.img`
 `;
 
 export const CardBody = styled.div`
+  visibility: ${props => (!props.show ? 'visible' : 'hidden')};
   display: flex;
-  margin-top: -8px;
   padding: 10px;
-`
+`;
 
 export const CardDetail = styled.div`
   margin-right: 15px;
   margin-left: 5px;
   font-size: 10px;
   font-weight: bold;
-`
+`;
+
+export const ViewDetailLink = styled.div`
+  color: rgb(66, 117, 180);
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 15px;
+`;
